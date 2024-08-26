@@ -1,7 +1,5 @@
 # Email program
 
-# App password - pupe grcj gzxe siok
-
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -22,7 +20,7 @@ def send_email():
     msg.attach(MIMEText(body, 'plain'))
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
+    server.starttls()  
     server.login(sender_email, sender_password)
     
     server.send_message(msg)
@@ -33,34 +31,29 @@ def send_email():
 root = tk.Tk()
 root.title("Email Chatbot")
 
-# Make the window full screen
-root.attributes('-fullscreen', True)
+root.geometry("600x400")
 
-tk.Label(root, text="Sender Email:").grid(row=0, column=0, padx=10, pady=5, sticky='w')
-sender_entry = tk.Entry(root, width=50)
-sender_entry.grid(row=0, column=1, padx=10, pady=5, sticky='ew')
+tk.Label(root, text="Sender Email:").grid(row=0, column=0, padx=10, pady=5)
+sender_entry = tk.Entry(root, width=50)  
+sender_entry.grid(row=0, column=1, padx=10, pady=5)
 
-tk.Label(root, text="Password:").grid(row=1, column=0, padx=10, pady=5, sticky='w')
-password_entry = tk.Entry(root, show="*", width=50)
-password_entry.grid(row=1, column=1, padx=10, pady=5, sticky='ew')
+tk.Label(root, text="Password:").grid(row=1, column=0, padx=10, pady=5)
+password_entry = tk.Entry(root, show="*", width=50)  
+password_entry.grid(row=1, column=1, padx=10, pady=5)
 
-tk.Label(root, text="Receiver Email:").grid(row=2, column=0, padx=10, pady=5, sticky='w')
-receiver_entry = tk.Entry(root, width=50)
-receiver_entry.grid(row=2, column=1, padx=10, pady=5, sticky='ew')
+tk.Label(root, text="Receiver Email:").grid(row=2, column=0, padx=10, pady=5)
+receiver_entry = tk.Entry(root, width=50)  
+receiver_entry.grid(row=2, column=1, padx=10, pady=5)
 
-tk.Label(root, text="Subject:").grid(row=3, column=0, padx=10, pady=5, sticky='w')
-subject_entry = tk.Entry(root, width=50)
-subject_entry.grid(row=3, column=1, padx=10, pady=5, sticky='ew')
+tk.Label(root, text="Subject:").grid(row=3, column=0, padx=10, pady=5)
+subject_entry = tk.Entry(root, width=50)  
+subject_entry.grid(row=3, column=1, padx=10, pady=5)
 
-tk.Label(root, text="Body:").grid(row=4, column=0, padx=10, pady=5, sticky='nw')
+tk.Label(root, text="Body:").grid(row=4, column=0, padx=10, pady=5)
 body_text = tk.Text(root, height=15, width=50)
-body_text.grid(row=4, column=1, padx=10, pady=5, sticky='nsew')
+body_text.grid(row=4, column=1, padx=10, pady=5)
 
 send_button = tk.Button(root, text="Send Email", command=send_email)
-send_button.grid(row=5, column=1, pady=10, sticky='e')
-
-# Make rows and columns responsive to window resizing
-root.grid_rowconfigure(4, weight=1)
-root.grid_columnconfigure(1, weight=1)
+send_button.grid(row=5, column=1, pady=10)
 
 root.mainloop()
